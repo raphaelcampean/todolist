@@ -31,6 +31,28 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+
+    @tasks = Task.all
+
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = "Task foi deletada com sucesso." }
+    end
+  end
+
+  def delete_completed_tasks
+    @tasks = Task.where(completed: true)
+    @tasks.destroy_all
+
+    @tasks = Task.all
+
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = "Tasks completadas foram deletadas com sucesso." }
+    end
+  end
+
   def complete_task
     @task = Task.find(params[:id])
     @task.completed = !@task.completed

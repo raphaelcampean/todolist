@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   resources :tasks do
     patch :complete_task, on: :member
+    delete :delete_completed_tasks, on: :collection
   end
 end

@@ -4,5 +4,8 @@
       <%= check_box_tag "task_#{task.id}_completed", '1', task.completed? %>
     <% end %>
   </div>
-  <p><%= task.title %></p>
+  <div class="d-flex justify-content-between w-100">
+    <p><%= task.title %></p>
+    <%= link_to "Deletar Tarefa", task_path(task), data: { turbo_method: :delete } %>
+  </div>
 </div>
