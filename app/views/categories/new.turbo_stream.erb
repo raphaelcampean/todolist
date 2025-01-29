@@ -1,0 +1,5 @@
+<div class="container">
+	<%= turbo_stream.update "new_category" do %>
+		<%= render "form", category: @category %>
+	<% end %>
+</div>

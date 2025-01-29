@@ -1,11 +1,5 @@
-<%= turbo_stream.replace "new_task_form" do %>
-  <%= turbo_frame_tag "new_task_form" do %>
-    <%= form_with model: Task.new, local: false do |form| %>
-      <div class="form-group mb-3">
-        <%= form.text_field :title, class: "form-control", placeholder: "Enter a task" %>
-      </div>
-    <% end %>
-  <% end %>
+<%= turbo_stream.update "new_task_form" do %>
+  <%= render "form", task: Task.new %>
 <% end %>
 
 <%= turbo_stream.append "tasks", @task %>

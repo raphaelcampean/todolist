@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     patch :complete_task, on: :member
     delete :delete_completed_tasks, on: :collection
   end
+
+  resources :categories, only: %i[new create destroy]
 end

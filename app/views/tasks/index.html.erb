@@ -3,12 +3,16 @@
     <div class="col-6">
       <h1 class="mb-3">Todo List</h1>
 
+      <%= turbo_frame_tag "new_category" do %>
+        <%= link_to "Criar uma categoria", new_category_path, data: { turbo_stream: true, turbo_frame: 'new_category' } %>
+      <% end %>
+
+      <%= turbo_frame_tag "show_categories" do %>
+        <%= render "categories/categories", categories: Category.all %>
+      <% end %>
+
       <%= turbo_frame_tag "new_task_form" do %>
-        <%= form_with model: @task, local: false do |form| %>
-          <div class="form-group mb-3">
-            <%= form.text_field :title, class: "form-control", placeholder: "Enter a task" %>
-          </div>
-        <% end %>
+        <%= render "tasks/form", task: Task.new %>
       <% end %>
 
       <%= turbo_frame_tag "tasks" do %>
@@ -19,7 +23,7 @@
         <%= link_to "Todas as Tarefas", root_path, data: { turbo_frame: "tasks" }, class: "btn btn-secondary me-2" %>
         <%= link_to "Tarefas Completas", root_path(filter: "completed"), data: { turbo_frame: "tasks" }, class: "btn btn-primary me-2" %>
         <%= link_to "Tarefas Incompletas", root_path(filter: "incompleted"), data: { turbo_frame: "tasks" }, class: "btn btn-warning me-2" %>
-        <%= link_to "Deletar as Tarefas Completas", delete_completed_tasks_tasks_path, data: { confirm: "Tem certeza?", turbo_frame: :delete_completed_tasks, turbo_method: :delete }, class: "btn btn-danger me-2" %>
+        <%= link_to "Deletar as Tarefas Completas", delete_completed_tasks_tasks_path, data: { turbo_confirm: "Tem certeza?", turbo_frame: :delete_completed_tasks, turbo_method: :delete }, class: "btn btn-danger me-2" %>
       </div>
   </div>
 </div>
