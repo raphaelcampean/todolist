@@ -1,7 +1,7 @@
 <ul class="list-group my-2 shadow-sm border border-danger">
 	<% categories.each do |category| %>
 		<li class="list-group-item">
-			<%= category.title %>
+			<%= link_to category.title, categories_path(category.title), data: { turbo: false } %>
 		</li>
 	<% end %>
 </ul>

@@ -13,5 +13,7 @@ Rails.application.routes.draw do
     delete :delete_completed_tasks, on: :collection
   end
 
-  resources :categories, only: %i[new create destroy]
+  resources :categories, only: %i[new create destroy] do
+    get :show, on: :collection, path: "/:title"
+  end
 end

@@ -1,0 +1,15 @@
+<div class="container mt-4">
+	<h1><%= @category.title %></h1>
+	<div class="list-group">
+		<% @category.tasks.each do |task| %>
+			<ul class="list-group my-2 shadow-sm border <%= task.completed? ? 'border-success' : 'border-danger' %>">
+				<li class="list-group-item">
+					<%= link_to complete_task_task_path(task), data: { turbo_method: :patch } do %>
+						<%= check_box_tag "task_#{task.id}_completed", '1', task.completed? %>
+					<% end %>
+					<%= task.title %>
+				</li>
+			</ul>
+		<% end %>
+	</div>
+</div>

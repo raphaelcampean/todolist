@@ -22,6 +22,11 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def show
+    @category = Category.find_by!(title: params[:title])
+    @tasks = @category.tasks
+  end
+
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
