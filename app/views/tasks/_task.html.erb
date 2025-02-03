@@ -1,11 +1,13 @@
-<div id="task_<%= task.id %>" class="d-flex">
-  <div class="me-2">
-    <%= link_to complete_task_task_path(task), data: { turbo_method: :patch } do %>
-      <%= check_box_tag "task_#{task.id}_completed", '1', task.completed? %>
-    <% end %>
-  </div>
-  <div class="d-flex justify-content-between w-100">
-    <p><%= task.title %></p>
-    <%= link_to "Deletar Tarefa", task_path(task), data: { turbo_confirm: "Tem certeza ?", turbo_method: :delete } %>
+<div class="column">
+  <div id="task_<%= task.id %>" class="d-flex item" draggable="true">
+    <div class="me-2">
+      <%= link_to complete_task_task_path(task), data: { turbo_method: :patch } do %>
+        <%= check_box_tag "task_#{task.id}_completed", '1', task.completed? %>
+      <% end %>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <p><%= task.title %></p>
+      <%= link_to "Deletar Tarefa", task_path(task), data: { turbo_confirm: "Tem certeza ?", turbo_method: :delete } %>
+    </div>
   </div>
 </div>
